@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom/client';
 import Router from './routes'
 import reportWebVitals from './reportWebVitals';
 
+// 加载常用的操作库
+import './assets/style/index.less'
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

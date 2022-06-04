@@ -9,7 +9,7 @@ import { Button } from "antd";
 const Login = () => {
   return (
     <div>
-      <Button>login</Button>
+      <Button>logins</Button>
     </div>
   );
 };

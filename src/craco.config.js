@@ -1,9 +1,17 @@
-/*
- * @Author: Tian Zhengdong
- * @Date: 2022-06-04 12:15:01
- * @Description: 
- */
-/* craco.config.js */
+const CracoLessPlugin = require("craco-less");
+
 module.exports = {
-    // ...
-  };
+  plugins: [
+    {
+      plugin: CracoLessPlugin,
+      options: {
+        lessLoaderOptions: {
+          lessOptions: {
+            modifyVars: { "@primary-color": "#1DA57A" },
+            javascriptEnabled: true,
+          },
+        },
+      },
+    },
+  ],
+};

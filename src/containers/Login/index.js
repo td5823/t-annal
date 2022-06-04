@@ -4,13 +4,13 @@
  * @Description:
  */
 import React from "react";
-import { Button } from "antd";
+import { Button, Space } from "antd";
 
 const Login = () => {
   return (
-    <div>
-      <Button>logins</Button>
-    </div>
+    <Space style={{ padding: 10 }}>
+      <Button type="primary">logins</Button>
+    </Space>
   );
 };
 

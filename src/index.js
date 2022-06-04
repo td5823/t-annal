@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 // import App from './App';
-import Router from './routes'
-import reportWebVitals from './reportWebVitals';
-
+import Router from "./routes";
+import reportWebVitals from "./reportWebVitals";
 // 加载常用的操作库
-import './assets/style/index.less'
+import "./assets/style/index.less";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router />

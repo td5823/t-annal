@@ -1,33 +1,15 @@
-// // import Inbox from '../views/Inbox';
-// import About from '../containers/Blog'
-
-// const routers = [
-//   {
-//     title: 'About',
-//     path: '/',
-//     component: About,
-//   },
-//   // {
-//   //   title: 'Inbox',
-//   //   path: '/inbox',
-//   //   component: Inbox,
-//   // },
-// ];
-
-// export default routers;
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // 登录模块
-// const Login = React.lazy(() => import("containers/Login"));
+const Login = React.lazy(() => import("../containers/Login"));
 // const Login =import("../containers/Login");
-import Login from "../containers/Login";
+// import Login from "../containers/Login";
 
 const routers = [
   {
     title: "About",
-    path: "/",
+    path: "/login",
     component: Login,
   },
 ];
@@ -39,6 +21,7 @@ const tRouter = () => {
         {routers.map((item, index) => {
           return (
             <Route
+              caseSensitive // 区分大小写
               key={index}
               exact
               path={item.path}

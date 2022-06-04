@@ -4,9 +4,14 @@
  * @Description:
  */
 import React from "react";
+import { Button } from "antd";
 
 const Login = () => {
-  return <div>login</div>;
+  return (
+    <div>
+      <Button>login</Button>
+    </div>
+  );
 };
 
-export default Login
+export default Login;

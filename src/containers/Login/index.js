@@ -9,7 +9,7 @@ import { Button, Space } from "antd";
 const Login = () => {
   return (
     <Space style={{ padding: 10 }}>
-      <Button type="primary">login</Button>
+      <Button type="primary">登录</Button>
     </Space>
   );
 };

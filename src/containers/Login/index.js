@@ -6,19 +6,22 @@
 import React, { useRef } from "react";
 import { Button, Space, Row, Col, Input, Form } from "antd";
 
+import { request } from "../../utils/Request";
+
 const Login = () => {
   const formRef = useRef();
 
   const handleLogin = () => {
     console.log(formRef.current.getFieldsValue());
-    debugger;
+    const { userName, passWord } = formRef.current.getFieldsValue();
+    request({ url: "123", params: { userName, passWord } });
   };
   return (
     <Col span={12} push={3}>
       <Form ref={formRef}>
         <Row align="middle" gutter={[0, 12]}>
           <Col span={24}>
-            <Form.Item label="账号" name="useName">
+            <Form.Item label="账号" name="userName">
               <Input />
             </Form.Item>
           </Col>

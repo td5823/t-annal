@@ -14,7 +14,7 @@ const Login = () => {
   const handleLogin = () => {
     console.log(formRef.current.getFieldsValue());
     const { userName, passWord } = formRef.current.getFieldsValue();
-    request({ url: "api/login2", params: { userName, passWord } });
+    request({ url: "ss", params: { userName, passWord } });
   };
   return (
     <Col span={12} push={3}>

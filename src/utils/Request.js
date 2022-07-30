@@ -9,6 +9,12 @@ import { message } from "antd";
 // 修axios 默认请求时长
 axios.defaults.timeout = 60000;
 
+const env = process.env.NODE_ENV
+if (env === 'development') {
+  axios.defaults.baseURL = '/api'
+  axios.defaults.withCredentials = true
+}
+
 // 添加请求拦截器
 axios.interceptors.request.use(
   function (config) {

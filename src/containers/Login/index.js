@@ -8,13 +8,20 @@ import { Button, Space, Row, Col, Input, Form } from "antd";
 
 import { request } from "../../utils/Request";
 
-const Login = () => {
+const Login = ({history}) => {
+  console.log('history', history);
   const formRef = useRef();
 
   const handleLogin = () => {
     console.log(formRef.current.getFieldsValue());
     const { userName, passWord } = formRef.current.getFieldsValue();
-    request({ url: "ss", params: { userName, passWord } });
+    request({
+      url: "ss", params: { userName, passWord }, callback: (response) => {
+        if (response?.code === '1') {
+
+        }
+      }
+    });
   };
   return (
     <Col span={12} push={3}>

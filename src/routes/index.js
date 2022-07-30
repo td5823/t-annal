@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 // 登录模块
 const Login = React.lazy(() => import("../containers/Login"));
@@ -29,6 +29,7 @@ const tRouter = () => {
             />
           );
         })}
+        <Route exact path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );

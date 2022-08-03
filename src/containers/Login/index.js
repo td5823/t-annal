@@ -4,12 +4,14 @@
  * @Description:
  */
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Space, Row, Col, Input, Form } from "antd";
 
 import { request } from "../../utils/Request";
 
-const Login = ({history}) => {
-  console.log('history', history);
+const Login = () => {
+  const navigate = useNavigate()
+  console.log('navigate', navigate);
   const formRef = useRef();
 
   const handleLogin = () => {
@@ -18,7 +20,7 @@ const Login = ({history}) => {
     request({
       url: "ss", params: { userName, passWord }, callback: (response) => {
         if (response?.code === '1') {
-
+          navigate('/blog', { replace: true })
         }
       }
     });

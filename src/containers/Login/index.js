@@ -5,7 +5,8 @@
  */
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Space, Row, Col, Input, Form } from "antd";
+import { Button } from 'components/antd'
+import { Space, Row, Col, Input, Form } from "antd";
 
 import { request } from "../../utils/Request";
 

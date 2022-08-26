@@ -13,7 +13,6 @@ const items = [
     label: '日志',
     key: 'app',
     icon: <AppstoreOutlined />,
-    disabled: true,
   },
   {
     label: '分享',

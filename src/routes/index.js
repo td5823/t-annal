@@ -2,35 +2,32 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Spin } from 'components/antd'
 
-const Home = React.lazy(() => import("../containers/Home"));
+// const Home = lazy(() => import("../pages/Home"));
 
 // 登录模块
-const Login = React.lazy(() => import("../containers/Login"));
+// const Login = lazy(() => import("../pages/Login"));
 
 // 博客模块
-const Blog = React.lazy(() => import("../containers/Blog"));
+const Blog = lazy(() => import("../packages/blog/src/routes"));
 
 const routers = [
-  // 登录模块
-  {
-    title: "Home",
-    path: "/home",
-    component: Home,
-  },
+  // // 登录模块
+  // {
+  //   title: "Home",
+  //   path: "/home",
+  //   component: Home,
+  // },
+  // {
+  //   path: "/login",
+  //   component: Login,
+  // },
   // 主页面
+  // {
+  //   path: "/main/*",
+  //   component: lazy(() => import("../pages/Main/routes")),
+  // },
   {
-    title: "Main",
-    path: "/main/*",
-    component: lazy(() => import("../containers/Main/routes")),
-  },
-  {
-    title: "About",
-    path: "/login",
-    component: Login,
-  },
-  {
-    title: "Blog",
-    path: "/blog",
+    path: "/blog/*",
     component: Blog,
   },
 ];

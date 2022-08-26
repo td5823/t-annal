@@ -1,9 +1,6 @@
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Layout, Menu } from 'antd';
 import { Outlet } from 'react-router-dom'
 import React from 'react';
-
-import BreadContext from 'components/BreadContext'
-
 
 const { Header, Content, Footer } = Layout;
 
@@ -27,20 +24,10 @@ const Home = (props) => {
     <Content
       style={{
         padding: '0 50px',
+        height: '100%'
       }}
     >
-      <Breadcrumb
-        style={{
-          margin: '16px 0',
-        }}
-      >
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
-      <BreadContext.Provider value={3333333333333}>
-        <Outlet />
-      </BreadContext.Provider>
+      <Outlet />
     </Content>
     <Footer
       style={{

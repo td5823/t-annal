@@ -2,10 +2,12 @@ import { Layout, Menu } from 'antd';
 import { Outlet } from 'react-router-dom'
 import React from 'react';
 
-const { Header, Content, Footer } = Layout;
+import Page from 'components/Page'
+
+const { Header, Footer } = Layout;
 
 const Home = (props) => {
-  return <Layout className="layout">
+  return <Page className="layout">
     <Header>
       <div className="logo" />
       <Menu
@@ -21,14 +23,14 @@ const Home = (props) => {
         })}
       />
     </Header>
-    <Content
+    <Page
       style={{
         padding: '0 50px',
         height: '100%'
       }}
     >
       <Outlet />
-    </Content>
+    </Page>
     <Footer
       style={{
         textAlign: 'center',
@@ -36,7 +38,7 @@ const Home = (props) => {
     >
       Ant Design ©2018 Created by Ant UED
     </Footer>
-  </Layout>
+  </Page>
 }
 
 export default Home;

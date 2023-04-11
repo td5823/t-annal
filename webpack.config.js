@@ -3,31 +3,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: {
-    index: "./src/index.js",
-  },
+  entry: "./src/index.js",
   output: {
-    filename: "[name].bundle.js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    clean: true,
-  },
-  devtool: "inline-source-map",
-  devServer: {
-    static: "./dist",
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "Development",
-    }),
-  ],
-  optimization: {
-    runtimeChunk: "single",
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+        use: ["babel-loader"],
         use: {
           loader: "babel-loader",
           options: {
@@ -35,10 +21,21 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
     ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+      filename: "index.html",
+    }),
+  ],
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
+  devServer: {
+    // static: {
+    //   directory: path.join(__dirname, 'public')
+    // },
+    port: 8080,
   },
 };

@@ -8,22 +8,31 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
+  devtool: "inline-source-map",
   module: {
+    // 将缺失的导出提示成错误而不是警告
+    strictExportPresence: true,
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(tsx|ts)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
         use: {
-          loader: "babel-loader",
+          loader: 'ts-loader'
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-          },
-        },
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       {
         test: /\.(css|less)$/i,
-        use: ["style-loader", "css-loader", 'less-loader'],
+        use: ["style-loader", "css-loader", "less-loader"],
       },
     ],
   },
@@ -34,12 +43,13 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
   devServer: {
     // static: {
     //   directory: path.join(__dirname, 'public')
     // },
+    // contentBase: './dist',
     port: 8080,
   },
 };

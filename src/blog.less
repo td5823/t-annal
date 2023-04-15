@@ -1,0 +1,27 @@
+// 定义变量
+@primary-color: #007bff;
+@border-radius: 5px;
+
+// 样式
+div {
+  background-color: @primary-color;
+  border-radius: @border-radius;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+
+  &:hover {
+    background-color: darken(@primary-color, 10%);
+    cursor: pointer;
+  }
+
+  &.active {
+    background-color: lighten(@primary-color, 20%);
+    border: 1px solid #fff;
+  }
+
+  .child-element {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+}

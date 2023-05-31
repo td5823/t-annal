@@ -4,7 +4,6 @@ import React from 'react';
 
 import './App.less'
 
-import App2 from './App2';
 
 // const currentDpr = window.devicePixelRatio;
 // const defaultDpr = 2; // sketch 里用的是 iphone 6 尺寸;

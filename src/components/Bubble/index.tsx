@@ -1,8 +1,6 @@
 import React from 'react';
 import './index.less';
 
-import App from './App'
-
 const BubbleBackground = () => {
   const bubbleCount = 50;
 

@@ -1,9 +1,7 @@
-import React from 'react';
-import './index.less';
+import React from "react";
 
 const BubbleBackground = () => {
   const bubbleCount = 50;
-
   return (
     <div className="bubble-container">
       {[...Array(bubbleCount)].map((_, index) => (

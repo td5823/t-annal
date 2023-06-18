@@ -33,8 +33,6 @@ https://commitlint.js.org/#/reference-rules
 */
 rules: {
   'type-enum': typeEnum.rules['type-enum'],
-  'subject-full-stop': [0, 'never'],
-  'subject-case': [0, 'never'],
 },
 };
 

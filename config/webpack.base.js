@@ -18,6 +18,7 @@ module.exports = {
       ...applicationAlias,
     },
     extensions: [".jsx", ".js", ".tsx", ".ts"],
+    modules: ['node_modules', 'src'], 
   },
   module: {
     // 将缺失的导出提示成错误而不是警告

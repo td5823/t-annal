@@ -1,14 +1,14 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
-import Bubble from "./components/Bubble";
+
+import Routes from "./routes"; // 使用短路径
 
 const root = document.getElementById("root");
 
 if (root) {
   createRoot(root).render(
-    <Fragment>
-      {/* <App /> */}
-      <Bubble />
-    </Fragment>
+    <React.StrictMode>
+      <Routes />
+    </React.StrictMode>
   );
 }

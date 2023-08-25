@@ -2,6 +2,7 @@
 const path = require("path");
 const { merge } = require("webpack-merge");
 const baseConfig = require("./webpack.base.js");
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 // 合并公共配置,并添加开发环境配置
 module.exports = merge(baseConfig, {
@@ -16,4 +17,10 @@ module.exports = merge(baseConfig, {
       directory: path.join(__dirname, "../public"), //托管静态资源public文件夹
     },
   },
+  plugins: [
+    // ...其它插件...
+    new ESLintPlugin({
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
+    }),
+  ],
 });

@@ -6,6 +6,7 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   "@": resolveApp("src"),
+  routes: resolveApp("src/routes"),
   assets: resolveApp("src/assets"),
   utils: resolveApp("src/utils"),
   locale: resolveApp("src/locale"),

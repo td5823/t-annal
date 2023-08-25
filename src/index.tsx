@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import { createRoot } from "react-dom/client";
 
-import Routes from "./routes"; // 使用短路径
+import Routes from "./routes";
 
 const root = document.getElementById("root");
 

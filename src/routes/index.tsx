@@ -1,12 +1,14 @@
-import React from "react";
+import * as React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-console.log('123');
+import Home from "../pages/Home";
+
+// console.log('123');
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Home />,
   },
 ]);
 

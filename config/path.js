@@ -7,11 +7,8 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 module.exports = {
   "@": resolveApp("src"),
   routes: resolveApp("src/routes"),
-  assets: resolveApp("src/assets"),
-  utils: resolveApp("src/utils"),
-  locale: resolveApp("src/locale"),
-  components: resolveApp("src/components"),
-  containers: resolveApp("src/containers"),
   store: resolveApp("src/store"),
-  helper: resolveApp("src/helper"),
+  utils: resolveApp("src/library/utils"),
+  components: resolveApp("src/library/components"),
+  setupProxy: resolveApp("src/setupProxy"),
 };

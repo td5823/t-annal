@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true, // 表示这是一个浏览器环境
-    node: true,    // 表示这是一个 Node.js 环境
+    node: true, // 表示这是一个 Node.js 环境
   },
   parserOptions: {
     ecmaVersion: 2021, // 使用 ECMAScript 2021 版本的语法
@@ -10,24 +10,41 @@ module.exports = {
       jsx: true, // 允许解析 JSX 语法
     },
   },
+  parser: "@typescript-eslint/parser",
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   // extends: ["eslint:recommended"], // 这一行被注释掉了，意味着没有继承特定的扩展配置
-  plugins: ["react", "react-hooks", "import"], // 使用了这些插件
+  plugins: ["@typescript-eslint", "react", "react-hooks", "import"],
   rules: {
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "react/jsx-uses-react": "error", // 强制在 JSX 使用 React
     "react/jsx-uses-vars": "error", // 检测未使用的 JSX 变量
+    "no-undef": "error", // 对未定义（未知变量）但是使用了的做规则
     "no-unused-vars": [
+      // 对定义了但是未使用的变量或常量做规则
       "error",
       {
-        vars: "all",               // 对所有变量生效
-        args: "after-used",       // 检测函数参数是否被使用
+        vars: "all", // 对所有变量生效
+        args: "after-used", // 检测函数参数是否被使用
         ignoreRestSiblings: true, // 忽略剩余参数和解构赋值中的未使用变量
       },
     ],
     "react/react-in-jsx-scope": "error", // 强制在 JSX 中使用 React
-    "react-hooks/rules-of-hooks": "error",     // 强制遵循 React Hooks 使用规则
-    "react-hooks/exhaustive-deps": "warn",     // 检测依赖项数组是否完整
+    "react-hooks/rules-of-hooks": "error", // 强制遵循 React Hooks 使用规则
+    "react-hooks/exhaustive-deps": "warn", // 检测依赖项数组是否完整
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default": "off"
     // 'import/no-unresolved': ['error', { commonjs: true, caseSensitive: true }]
     // 上面这行被注释掉了，如果启用会检查未解析的导入模块
   },
+  // overrides: [
+  //   {
+  //     files: ["*.ts", "*.tsx"],
+  //     rules: {
+  //       "no-unused-vars": "off", // 关闭禁止未使用的变量规则
+  //       "no-undef": "off", // 关闭禁止使用未定义的变量规则
+  //       // ...其他规则...
+  //     },
+  //   },
+  // ],
 };
-

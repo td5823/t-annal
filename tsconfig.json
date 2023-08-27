@@ -4,15 +4,21 @@
     "module": "ESNext", // 使用 ES 模块格式进行模块化
     "lib": ["DOM", "ESNext"], // 引入需要的类型声明库，例如 DOM 和 ESNext
     "strict": true, // 开启严格模式，包括所有严格类型检查选项
-    "moduleResolution": "node",  // 使用 Node 解析模块路径
+    "moduleResolution": "node", // 使用 Node 解析模块路径
     "jsx": "react", // 使用 React 的 JSX 语法
+    "baseUrl": ".", // 设置 baseUrl 为当前目录
+    "esModuleInterop": true, // 启用 ES 模块的默认导出转换为 CommonJS 格式的 Interop
+    "paths": {
+      "@/*": ["src/*"],
+      "store/*": ["src/store/*"], // 修正映射路径
+      "utils/*": ["src/library/utils/*"] // 修正映射路径
+    }
   },
-  "include": ["src"], // 需要包含在编译中的源代码目录，这里设置为 "src"，你可以根据实际情况进行修改
+  "include": ["src/*"], // 需要包含在编译中的源代码目录，这里设置为 "src"，你可以根据实际情况进行修改
   "exclude": ["node_modules"] // 需要排除的目录，这里排除了 "node_modules"
 }
-    // "resolveJsonModule": true, // 支持导入 JSON 文件
-		// "skipLibCheck": false, // true, 跳过对引入但未使用的库的检查。
-    // "esModuleInterop": true, // 启用 ES 模块的默认导出转换为 CommonJS 格式的 Interop
+// "resolveJsonModule": true, // 支持导入 JSON 文件
+// "skipLibCheck": false, // true, 跳过对引入但未使用的库的检查。
 
 /** 
 当 "strict": true 时，会开启 TypeScript 的严格模式，包括以下几个严格类型检查选项：

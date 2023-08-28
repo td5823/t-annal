@@ -15,6 +15,7 @@ module.exports = {
   // extends: ["eslint:recommended"], // 这一行被注释掉了，意味着没有继承特定的扩展配置
   plugins: ["@typescript-eslint", "react", "react-hooks", "import"],
   rules: {
+    'no-debugger': 'warn',
     "@typescript-eslint/explicit-module-boundary-types": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "react/jsx-uses-react": "error", // 强制在 JSX 使用 React

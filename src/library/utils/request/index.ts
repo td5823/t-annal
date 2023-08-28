@@ -1,6 +1,6 @@
 import axios from "axios";
 // import postForm from "./postForm";
-import postJson from "./postJson";
+import _postJson from "./postJson";
 
 axios.defaults.timeout = 300000;
 
@@ -16,8 +16,15 @@ if (env === "development") {
   axios.defaults.withCredentials = true;
 }
 
+// axios.interceptors.request.use((config) => {
+//   config.headers["Cookie"] = `token=${token}`;
+//   return config;
+// });
+
+export const postJson = _postJson
+
 const request = {
-  postJson,
+  postJson:_postJson,
 };
 
 export default request;

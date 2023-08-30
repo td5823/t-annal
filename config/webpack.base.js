@@ -1,7 +1,7 @@
 // webpack.base.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const applicationAlias = require("./path");
+const applicationAlias = require("./paths");
 
 module.exports = {
   // ...

@@ -10,5 +10,5 @@ module.exports = {
   store: resolveApp("src/store"),
   utils: resolveApp("src/library/utils"),
   components: resolveApp("src/library/components"),
-  setupProxy: resolveApp("src/setupProxy"),
+  setupProxy: resolveApp("src/setupProxy.js"),
 };

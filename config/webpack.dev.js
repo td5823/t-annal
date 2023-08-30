@@ -1,10 +1,11 @@
 // webpack.dev.js
 const path = require("path");
+const fs = require("fs");
 const { merge } = require("webpack-merge");
 const baseConfig = require("./webpack.base.js");
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintPlugin = require("eslint-webpack-plugin");
 
-// const paths = require('./path');
+const paths = require("./paths.js");
 
 // 合并公共配置,并添加开发环境配置
 module.exports = merge(baseConfig, {
@@ -15,30 +16,25 @@ module.exports = merge(baseConfig, {
     compress: false, // gzip压缩,开发环境不开启,提升热更新速度
     hot: true, // 开启热更新，后面会讲react模块热替换具体配置
     historyApiFallback: true, // 解决history路由404问题
-    proxy: {
-      '/api': {
-        target: 'https://cloud.region1.qince.com/', // 目标后端服务
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': '' // Optionally, you can rewrite the path if needed
-        },
-        onProxyRes: function (proxyRes, req, res) {
-          if (req.method === 'OPTIONS') {
-            proxyRes.headers['Access-Control-Allow-Origin'] = req.headers.origin || '*'
-            proxyRes.headers['Access-Control-Allow-Credentials'] = true
-            proxyRes.headers['Access-Control-Allow-Methods'] = 'GET,POST,OPTIONS,PUT,DELETE,FETCH'
-            proxyRes.headers['Access-Control-Allow-Headers'] = 'DNT,User-Agent,X-Requested-With,h5-requested-with,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,token,source'
-            proxyRes.statusCode = 204
-          } else {
-            proxyRes.headers['Access-Control-Allow-Origin'] = req.headers.origin || '*'
-            proxyRes.headers['Access-Control-Allow-Credentials'] = true
-          }
-        },
-        router: function (req) {
-          // return app.get('route-target') || target
-        }
-      },
+    setupMiddlewares: (middlewares, devServer) => {
+      if (!devServer) {
+        throw new Error("webpack-dev-server is not defined");
+      }
+      if (fs.existsSync(paths.setupProxy)) {
+        // This registers user provided middleware for proxy reasons
+        require(paths.setupProxy)(devServer.app);
+      }
+      return middlewares;
     },
+    // proxy: {
+    //   '/api': {
+    //     target: 'https://cloud.region1.qince.com/', // 目标后端服务
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/api': '' // Optionally, you can rewrite the path if needed
+    //     },
+    //   },
+    // },
     static: {
       directory: path.join(__dirname, "../public"), //托管静态资源public文件夹
     },
@@ -46,7 +42,7 @@ module.exports = merge(baseConfig, {
   plugins: [
     // ...其它插件...
     new ESLintPlugin({
-      extensions: ['js', 'jsx', 'ts', 'tsx'],
+      extensions: ["js", "jsx", "ts", "tsx"],
     }),
   ],
 });

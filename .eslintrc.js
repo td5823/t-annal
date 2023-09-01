@@ -16,6 +16,7 @@ module.exports = {
   plugins: ["@typescript-eslint", "react", "react-hooks", "import"],
   rules: {
     'no-debugger': 'warn', // 有debugger警告提示
+    "no-console": 'warn',  // 有console警告提示
     "@typescript-eslint/explicit-module-boundary-types": "error", // 于在函数和方法的返回类型未明确指定的情况下发出错误警告
     "@typescript-eslint/no-explicit-any": "off", // 示 ESLint 在检测到代码中使用了显式的 any 类型时，会发出警告
     '@typescript-eslint/no-inferrable-types': 'warn', // 当赋值操作中的变量类型可以被推断出时，禁止显式指定类型为 any

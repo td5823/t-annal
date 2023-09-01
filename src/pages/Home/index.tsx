@@ -4,9 +4,6 @@ import SiderMenu from "./SiderMenu";
 import { storeHome } from "store/Home";
 import "./index.less";
 
-const a:any = []
-console.log('a', a);
-
 const Home: React.FC<any> = () => {
   const { menus, getMenuInfo } = storeHome(
     (props: any) => ({

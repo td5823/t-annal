@@ -3,11 +3,11 @@
     "target": "ESNext", // 编译目标版本为 ESNext，可以根据需要选择其他版本
     "module": "ESNext", // 使用 ES 模块格式进行模块化
     "lib": ["DOM", "ESNext"], // 引入需要的类型声明库，例如 DOM 和 ESNext
-    "strict": true, // 开启严格模式，包括所有严格类型检查选项
     "moduleResolution": "node", // 使用 Node 解析模块路径
     "jsx": "react", // 使用 React 的 JSX 语法
     "baseUrl": ".", // 设置 baseUrl 为当前目录
     "esModuleInterop": true, // 启用 ES 模块的默认导出转换为 CommonJS 格式的 Interop
+    "strict": true, // 开启严格模式，包括所有严格类型检查选项
     "paths": {
       "@/*": ["src/*"],
       "store/*": ["src/store/*"], // 修正映射路径

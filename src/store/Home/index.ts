@@ -1,8 +1,8 @@
-import { create } from "zustand";
+import { create, UseBoundStore, StoreApi } from "zustand";
 
 import { postJson } from "utils/request";
 
-export const storeHome = create((set) => ({
+export const storeHome: UseBoundStore<StoreApi<unknown>> = create((set) => ({
   loading: false,
   token: null, // 用户token
   userInfo: null, // 用户信息

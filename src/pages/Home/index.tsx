@@ -1,28 +1,15 @@
-import * as React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { shallow } from "zustand/shallow";
-
 import SiderMenu from "./SiderMenu";
-
 import { storeHome } from "store/Home";
-
 import "./index.less";
 
-const Home = (): any => {
-  const {
-    menus,
-    // getUserInfo,
-    // userInfo,
-    getMenuInfo,
-    // getFavorites,
-    // openTab,
-    // closeTab,
-    // showTour,
-    // updateTab,
-    // updatePageTab,
-    // changeState,
-  } = storeHome(
-    (props: any): any => ({
+const a:any = []
+console.log('a', a);
+
+const Home: React.FC<any> = () => {
+  const { menus, getMenuInfo } = storeHome(
+    (props: any) => ({
       menus: props.menus,
       getMenuInfo: props.getMenuInfo,
     }),

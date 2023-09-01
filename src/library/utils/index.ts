@@ -1,5 +1,7 @@
 import request from "./request";
 
-export default {
+const utils = {
   request,
 };
+
+export default utils;

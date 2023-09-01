@@ -4,7 +4,7 @@ interface Params {
   [key: string]: any;
 }
 
-const postJson = (url: string = "", params: Params = {}): Promise<AxiosResponse> => {
+const postJson = (url: string, params: Params = {}): Promise<AxiosResponse> => {
   const config = {
     headers: {
       "Content-Type": "application/json",

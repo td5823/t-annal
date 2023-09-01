@@ -16,8 +16,9 @@ module.exports = {
   plugins: ["@typescript-eslint", "react", "react-hooks", "import"],
   rules: {
     'no-debugger': 'warn', // 有debugger警告提示
-    "@typescript-eslint/explicit-module-boundary-types": "error",
-    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "error", // 于在函数和方法的返回类型未明确指定的情况下发出错误警告
+    "@typescript-eslint/no-explicit-any": "off", // 示 ESLint 在检测到代码中使用了显式的 any 类型时，会发出警告
+    '@typescript-eslint/no-inferrable-types': 'warn', // 当赋值操作中的变量类型可以被推断出时，禁止显式指定类型为 any
     "@typescript-eslint/no-var-requires": "off", // @typescript-eslint/no-var-requires 是 TypeScript ESLint 插件提供的一条规则，用于在 TypeScript 代码中禁止使用 require 语句来导入模块，而鼓励使用 ES6 模块的 import 语句。
     "react/jsx-uses-react": "error", // 强制在 JSX 使用 React
     "react/jsx-uses-vars": "error", // 检测未使用的 JSX 变量

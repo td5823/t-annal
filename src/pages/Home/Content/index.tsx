@@ -4,10 +4,9 @@ import { Layout } from "antd";
 
 import { storeHome } from "store/Home";
 
+import Iframe from "./Iframe";
 import Sider from "./Sider";
-import Content from "./Content";
-
-import "./index.less";
+import Head from "./Head";
 
 const Home: React.FC<any> = () => {
   const { getMenuInfo }: any = storeHome(
@@ -23,10 +22,13 @@ const Home: React.FC<any> = () => {
   }, []); // eslint-disable-line
 
   return (
-    <Layout className="full" hasSider>
-      <Sider />
-      <Content />
-    </Layout>
+    <Layout.Content>
+      <Head />
+      <Layout className="full">
+        <Sider />
+        <Iframe />
+      </Layout>
+    </Layout.Content>
   );
 };
 

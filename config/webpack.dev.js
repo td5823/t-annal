@@ -35,15 +35,6 @@ module.exports = merge(baseConfig, {
       }
       return middlewares;
     },
-    // proxy: {
-    //   '/api': {
-    //     target: 'https://cloud.region1.qince.com/', // 目标后端服务
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/api': '' // Optionally, you can rewrite the path if needed
-    //     },
-    //   },
-    // },
     static: {
       directory: path.join(__dirname, "../public"), //托管静态资源public文件夹
     },

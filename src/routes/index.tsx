@@ -1,8 +1,7 @@
-import * as React from "react";
+import React, { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Home from "../pages/Home";
-
+const Home = lazy(() => import("../pages/Home"));
 // console.log('123');
 
 const router = createBrowserRouter([

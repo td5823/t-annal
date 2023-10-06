@@ -4,11 +4,6 @@ import { Layout } from "antd";
 
 import { storeHome } from "store/Home";
 
-import Sider from "./Sider";
-import Content from "./Content";
-
-import "./index.less";
-
 const Home: React.FC<any> = () => {
   const { getMenuInfo }: any = storeHome(
     (props: any) => ({
@@ -23,10 +18,9 @@ const Home: React.FC<any> = () => {
   }, []); // eslint-disable-line
 
   return (
-    <Layout className="full" hasSider>
-      <Sider />
-      <Content />
-    </Layout>
+    <Layout.Header style={{ backgroundColor: "#ffffff" }}>
+      123123123
+    </Layout.Header>
   );
 };
 

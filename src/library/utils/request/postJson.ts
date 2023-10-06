@@ -4,13 +4,15 @@ interface Params {
   [key: string]: any;
 }
 
-const postJson = (url: string, params: Params = {}): Promise<AxiosResponse> => {
+const postJson = async (url: string, params: Params = {}): Promise<any> => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  return axios.post(url, params, config);
+
+  const response: AxiosResponse = await axios.post(url, params, config);
+  return response.data;
 };
 
 export default postJson;

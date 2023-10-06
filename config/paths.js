@@ -9,6 +9,7 @@ module.exports = {
   routes: resolveApp("src/routes"),
   store: resolveApp("src/store"),
   utils: resolveApp("src/library/utils"),
+  assets: resolveApp("src/library/assets"),
   components: resolveApp("src/library/components"),
   setupProxy: resolveApp("src/setupProxy.js"),
 };

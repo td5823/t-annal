@@ -1,34 +1,63 @@
-import { create, UseBoundStore, StoreApi } from "zustand";
+import { create } from "zustand";
 
 import { postJson } from "utils/request";
 
-export const storeHome: UseBoundStore<StoreApi<unknown>> = create((set) => ({
+interface StoreHomeState {
+  loading: boolean;
+  token: string | null;
+  userInfo: UserInfo | null;
+  favorites: any[] | null;
+  menus: Menu[]; // 假设 Menu 和 UserInfo 是定义好的类型
+  activeMenuKey: string;
+  tabPanes: TabPane[];
+  activePanelKey: string;
+  prevActivePanelKey: string;
+  permission: string[];
+  fixedSider: boolean;
+  showTour: boolean;
+  messageCount: number;
+}
+
+interface UserInfo {
+  // 定义用户信息的类型
+}
+
+interface Menu {
+  // 定义菜单项的类型
+}
+
+interface TabPane {
+  id: string;
+  title: string;
+  url: string;
+  closable: boolean;
+}
+
+export const storeHome: any = create<StoreHomeState>((set) => ({
   loading: false,
-  token: null, // 用户token
-  userInfo: null, // 用户信息
-  favorites: null, // 收藏菜单集合
-  menus: [], // 菜单集合
-  activeMenuKey: "", // 当前激活菜单的key
-  tabPanes: [], // tab页签集合{ id: '-1', title: '我的主页', url: '/sysapp/react/web/platform.html#/home', closable: false }
-  activePanelKey: "m-home", // 当前激活tab页签的key
-  prevActivePanelKey: "", // 上一次激活的tab页签key
-  permission: [], // 菜单权限
-  fixedSider: localStorage.getItem("wq-main-fixed-sider") !== "false", // 是否固定侧边栏
-  showTour: !localStorage.getItem("wq-main-show-tour"), // 是否展示漫游导航
-  messageCount: 0, // 未读消息数量
+  token: null,
+  userInfo: null,
+  favorites: null,
+  menus: [],
+  activeMenuKey: "",
+  tabPanes: [],
+  activePanelKey: "m-home",
+  prevActivePanelKey: "",
+  permission: [],
+  fixedSider: localStorage.getItem("wq-main-fixed-sider") !== "false",
+  showTour: !localStorage.getItem("wq-main-show-tour"),
+  messageCount: 0,
   // 设置store
   changeState: async (params = {}) => {
-    set({ ...params });
+    set((state) => ({ ...state, ...params }));
   },
   // 获取菜单信息
   getMenuInfo: async () => {
+    // debugger
     set({ loading: true });
-    const { code, data }: any = await postJson(
-      "/platform/portal/getWebMenuList.do"
-    );
-    console.log("data", data);
-    if (code === "1") {
-      set({});
+    const result = await postJson("/platform/portal/getWebMenuList.do");
+    if (result.code === "1") {
+      set({ menus: result.data });
     }
     set({ loading: false });
   },

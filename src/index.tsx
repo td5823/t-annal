@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 
 import Routes from "./routes";
 
+import 'assets/style/index.less'
+
 const root = document.getElementById("root");
 
 if (root) {

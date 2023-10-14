@@ -25,16 +25,13 @@ const SecondaryMenu = (): any => {
                   ...others,
                   selectable: false,
                   disabled: true,
-                  className: "wq-menu-item-virtual",
                 },
                 ...children.map((child) => ({
                   ...child,
-                  className: "wq-menu-item-group",
                 })),
               ]
             : {
                 ...item,
-                className: "wq-menu-item-group",
               };
         })
       );

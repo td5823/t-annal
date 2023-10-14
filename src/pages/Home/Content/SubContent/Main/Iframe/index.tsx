@@ -19,7 +19,11 @@ const Iframe: React.FC<any> = ({ id, name, url }) => {
         title={name}
         src={formatUrl(url)}
         key={url}
-        style={{ width: "100%", height: "100%", border: "0 none" }}
+        style={{
+          width: "100%",
+          height: `calc(100vh - 120px)`,
+          border: "0 none",
+        }}
       />
     </div>
   );

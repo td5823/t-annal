@@ -6,9 +6,10 @@ import { shallow } from "zustand/shallow";
 import Iframe from "./Iframe";
 
 import { storeHome } from "store/Home";
+
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 
-const App: React.FC = () => {
+const Main: React.FC = () => {
   const { tabPanes } = storeHome(
     (props: any) => ({
       tabPanes: props.tabPanes,
@@ -61,10 +62,11 @@ const App: React.FC = () => {
         // activeKey={activeKey}
         type="editable-card"
         onEdit={hanldeTabPanes}
+        style={{ height: "100%" }}
         items={_items}
       />
     </Layout.Content>
   );
 };
 
-export default App;
+export default Main;

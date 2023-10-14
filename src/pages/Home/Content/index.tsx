@@ -6,10 +6,10 @@ import SubContent from "./SubContent";
 
 const Main: React.FC<any> = () => {
   return (
-    <Layout.Content>
+    <Layout>
       <Head />
       <SubContent />
-    </Layout.Content>
+    </Layout>
   );
 };
 

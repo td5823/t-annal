@@ -4,6 +4,7 @@ const fs = require("fs");
 const { merge } = require("webpack-merge");
 const baseConfig = require("./webpack.base.js");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const webpack = require('webpack');
 
 const paths = require("./paths.js");
 
@@ -42,6 +43,7 @@ module.exports = merge(baseConfig, {
   // stats: 'errors-warnings',
   plugins: [
     // ...其它插件...
+    new webpack.HotModuleReplacementPlugin(),
     new ESLintPlugin({
       extensions: ["js", "jsx", "ts", "tsx"],
       failOnError: true, // 确保不会因 ESLint 警告而中断构建

@@ -48,11 +48,12 @@ module.exports = {
       rules: {
         // "no-unused-vars": "off", // 关闭禁止未使用的变量规则
         // "no-undef": "off", // 关闭禁止使用未定义的变量规则
-        "@typescript-eslint/no-unused-vars": 'off',
+        "@typescript-eslint/ban-ts-comment": "warn", // @ ts-ignore 报警告
+        "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/explicit-module-boundary-types": "error", // 于在函数和方法的返回类型未明确指定的情况下发出错误警告
         "@typescript-eslint/no-explicit-any": "off", // 示 ESLint 在检测到代码中使用了显式的 any 类型时，会发出警告
         "@typescript-eslint/no-inferrable-types": "off", // 当赋值操作中的变量类型可以被推断出时，禁止显式指定类型
-        "@typescript-eslint/no-var-requires": "off", // @typescript-eslint/no-var-requires 是 TypeScript ESLint 插件提供的一条规则，用于在 TypeScript 代码中禁止使用 require 语句来导入模块，而鼓励使用 ES6 模块的 import 语句。
+        "@typescript-eslint/no-var-requires": "warn", // @typescript-eslint/no-var-requires 是 TypeScript ESLint 插件提供的一条规则，用于在 TypeScript 代码中禁止使用 require 语句来导入模块，而鼓励使用 ES6 模块的 import 语句。
         // ...其他规则...
       },
     },

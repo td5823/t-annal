@@ -2,13 +2,13 @@ import React from "react";
 import { Layout } from "antd";
 
 import Head from "./Head";
-import Content from "./Content";
+import SubContent from "./SubContent";
 
 const Main: React.FC<any> = () => {
   return (
     <Layout.Content>
       <Head />
-      <Content />
+      <SubContent />
     </Layout.Content>
   );
 };

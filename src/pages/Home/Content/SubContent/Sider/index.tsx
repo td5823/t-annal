@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
+import React, { useMemo, memo } from "react";
 import { Layout, Tree } from "antd";
 import { shallow } from "zustand/shallow";
 
 import { storeHome } from "store/Home";
 
-const SecondaryMenu = (): any => {
+const SubMenu = (): any => {
   const { menus, firstMenukey, openTab } = storeHome(
     (props: any) => ({
       menus: props.menus,
@@ -13,6 +13,7 @@ const SecondaryMenu = (): any => {
     }),
     shallow
   );
+
   // 处理树形数据
   const _treeData = useMemo(() => {
     if (menus.length > 0 && firstMenukey) {
@@ -55,11 +56,10 @@ const SecondaryMenu = (): any => {
       }
     }
   };
-  
+
   return (
     <Layout.Sider style={{ height: "100%", backgroundColor: "#ffffff" }}>
       <Tree.DirectoryTree
-        className="wq-main-sub-menus"
         // mode={"inline" as any}
         blockNode
         showIcon={false}
@@ -72,7 +72,7 @@ const SecondaryMenu = (): any => {
   );
 };
 
-export default SecondaryMenu;
+export default memo(SubMenu);
 
 function customFlattenDepth<T>(arr: T[], depth: number = 1): T[] {
   if (depth === 0) {

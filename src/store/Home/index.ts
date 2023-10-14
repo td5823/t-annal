@@ -46,8 +46,8 @@ export const storeHome: any = create<StoreHomeState>((set, get) => ({
   activePanelKey: "m-home",
   prevActivePanelKey: "",
   permission: [],
-  fixedSider: localStorage.getItem("wq-main-fixed-sider") !== "false",
-  showTour: !localStorage.getItem("wq-main-show-tour"),
+  fixedSider: localStorage.getItem("main-fixed-sider") !== "false",
+  showTour: !localStorage.getItem("main-show-tour"),
   messageCount: 0,
   // 设置store
   changeState: async (params = {}) => {

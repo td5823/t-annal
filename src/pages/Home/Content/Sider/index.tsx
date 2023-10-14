@@ -4,20 +4,20 @@ import { shallow } from "zustand/shallow";
 
 import { storeHome } from "store/Home";
 
-const activeMenuKey: any = "8";
-
 const SecondaryMenu = (): any => {
-  const { menus } = storeHome(
+  const { menus, firstMenukey, openTab } = storeHome(
     (props: any) => ({
       menus: props.menus,
+      firstMenukey: props.firstMenukey,
+      openTab: props.openTab,
     }),
     shallow
   );
   // 处理树形数据
   const _treeData = useMemo(() => {
-    if (menus.length > 0 && activeMenuKey) {
+    if (menus.length > 0 && firstMenukey) {
       return customFlattenDepth(
-        generateLevelData(activeMenuKey, menus, 1).map((item) => {
+        generateLevelData(firstMenukey, menus, 1).map((item) => {
           const { isGrouping, children = [], ...others } = item;
           return isGrouping
             ? [
@@ -40,10 +40,25 @@ const SecondaryMenu = (): any => {
       );
     }
     return [];
-  }, [menus, activeMenuKey]); // eslint-disable-line
+  }, [menus, firstMenukey]); // eslint-disable-line
 
-  const handleSelect = () => {};
-
+  // 点击树节点触发
+  const handleSelect = (selectedKeys: any, { node }: any) => {
+    if (!node?.children?.length) {
+      // 打开新tab页签
+      if (node?.openType === "2") {
+        window.open(node.url);
+      } else {
+        openTab({
+          id: node.id,
+          title: node.name,
+          url: node.url,
+          closable: true,
+        });
+      }
+    }
+  };
+  
   return (
     <Layout.Sider style={{ height: "100%", backgroundColor: "#ffffff" }}>
       <Tree.DirectoryTree

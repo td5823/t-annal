@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
 import { postJson } from "utils/request";
+import _cloneDeep from "utils/lodash/cloneDeep";
+import uniqueId from "utils/lodash/uniqueId";
 
 interface StoreHomeState {
   loading: boolean;
@@ -8,7 +10,7 @@ interface StoreHomeState {
   userInfo: UserInfo | null;
   favorites: any[] | null;
   menus: Menu[]; // 假设 Menu 和 UserInfo 是定义好的类型
-  activeMenuKey: string;
+  firstMenukey: string;
   tabPanes: TabPane[];
   activePanelKey: string;
   prevActivePanelKey: string;
@@ -33,13 +35,13 @@ interface TabPane {
   closable: boolean;
 }
 
-export const storeHome: any = create<StoreHomeState>((set) => ({
+export const storeHome: any = create<StoreHomeState>((set, get) => ({
   loading: false,
   token: null,
   userInfo: null,
   favorites: null,
   menus: [],
-  activeMenuKey: "",
+  firstMenukey: "",
   tabPanes: [],
   activePanelKey: "m-home",
   prevActivePanelKey: "",
@@ -51,9 +53,64 @@ export const storeHome: any = create<StoreHomeState>((set) => ({
   changeState: async (params = {}) => {
     set((state) => ({ ...state, ...params }));
   },
+  // 打开tab页签
+  openTab: async (option: any) => {
+    if (!option.id) {
+      option.id = uniqueId();
+    }
+    const prevActivePanelKey = get().activePanelKey;
+    const currentKey = get().activePanelKey;
+    const tabPanes = get().tabPanes;
+
+    if (
+      tabPanes.find((item) => item.id === option.id && item.url === option.url)
+    ) {
+      // tab页签列表中存在，直接激活  且刷新页面
+      set({
+        activePanelKey: option.id,
+      });
+      // (window as any)?.getPageTab(option.id)?.location?.reload();
+    } else if (
+      tabPanes.find((item) => item.id === option.id && item.url !== option.url)
+    ) {
+      // 相同menu更新url
+      set({
+        activePanelKey: option.id,
+        prevActivePanelKey:
+          currentKey === option.id ? prevActivePanelKey || "" : currentKey,
+      });
+
+      (get() as any)?.updateTab({
+        id: option.id,
+        title: option?.title || "",
+        url: option.url,
+      });
+    } else {
+      // tab页签列表中不存在
+      set({
+        prevActivePanelKey: currentKey,
+        activePanelKey: option.id,
+        tabPanes: [...tabPanes, { closable: true, ...option }],
+      });
+    }
+  },
+  // 更新tab页签
+  updateTab: async (params: any) => {
+    const { title = "", url = "", id = "" }: any = params;
+    params.id = id?.replace("page_", "");
+    const { tabPanes, activePanelKey } = get();
+    const mTabPanes = _cloneDeep(tabPanes);
+    const modifyTaget: any =
+      mTabPanes?.find((item: any) => item.id === (id || activePanelKey)) || {};
+
+    if (modifyTaget) {
+      modifyTaget.title = title ? title : modifyTaget?.title;
+      modifyTaget.url = url ? url : modifyTaget?.url;
+    }
+    set({ tabPanes: [...mTabPanes] });
+  },
   // 获取菜单信息
   getMenuInfo: async () => {
-    // debugger
     set({ loading: true });
     const result = await postJson("/platform/portal/getWebMenuList.do");
     if (result.code === "1") {

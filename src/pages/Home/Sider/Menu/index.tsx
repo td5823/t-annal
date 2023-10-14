@@ -5,9 +5,11 @@ import { Menu, Layout } from "antd";
 import { AlibabaOutlined } from "@ant-design/icons";
 
 const FirstLevelMenu = (): any => {
-  const { menus } = storeHome(
+  const { menus, firstMenukey, changeState } = storeHome(
     (props: any) => ({
       menus: props.menus,
+      firstMenukey: props.firstMenukey,
+      changeState: props.changeState,
     }),
     shallow
   );
@@ -23,15 +25,22 @@ const FirstLevelMenu = (): any => {
       }));
   }, [menus]); // eslint-disable-line
 
+  // 点击一级菜单
+  const handleClick = ({ key }: { key: string }) => {
+    changeState({
+      firstMenukey: key,
+    });
+  };
+
   return (
     <Layout.Content>
       <Menu
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
         mode="inline"
         inlineIndent={10}
         theme="dark"
+        selectedKeys={[firstMenukey || []]}
         items={_items}
+        onClick={handleClick}
       />
     </Layout.Content>
   );

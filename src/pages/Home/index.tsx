@@ -7,8 +7,6 @@ import { storeHome } from "store/Home";
 import Sider from "./Sider";
 import Content from "./Content";
 
-import "./index.less";
-
 const Home: React.FC<any> = () => {
   const { getMenuInfo }: any = storeHome(
     (props: any) => ({

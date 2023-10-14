@@ -1,20 +1,16 @@
 import React from "react";
 import { Layout } from "antd";
 
-import Iframe from "./Iframe";
-import Sider from "./Sider";
 import Head from "./Head";
+import Content from "./Content";
 
-const Content: React.FC<any> = () => {
+const Main: React.FC<any> = () => {
   return (
     <Layout.Content>
       <Head />
-      <Layout className="full">
-        <Sider />
-        <Iframe />
-      </Layout>
+      <Content />
     </Layout.Content>
   );
 };
 
-export default React.memo(Content);
+export default React.memo(Main);

@@ -28,4 +28,4 @@ const Home: React.FC<any> = () => {
   );
 };
 
-export default React.memo(Home);
+export default Home

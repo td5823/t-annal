@@ -13,7 +13,7 @@ const Main: React.FC = () => {
   const { tabPanes } = storeHome(
     (props: any) => ({
       tabPanes: props.tabPanes,
-      firstMenukey: props.firstMenukey,
+      fmKey: props.fmKey,
       openTab: props.openTab,
     }),
     shallow

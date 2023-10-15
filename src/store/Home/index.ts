@@ -10,10 +10,10 @@ interface StoreHomeState {
   userInfo: UserInfo | null;
   favorites: any[] | null;
   menus: Menu[]; // 假设 Menu 和 UserInfo 是定义好的类型
-  firstMenukey: string;
+  fmKey: string;
   tabPanes: TabPane[];
-  activePanelKey: string;
-  prevActivePanelKey: string;
+  smKey: string;
+  prevsmKey: string;
   permission: string[];
   fixedSider: boolean;
   showTour: boolean;
@@ -41,10 +41,10 @@ export const storeHome: any = create<StoreHomeState>((set, get) => ({
   userInfo: null,
   favorites: null,
   menus: [],
-  firstMenukey: "",
+  fmKey: "",
   tabPanes: [],
-  activePanelKey: "m-home",
-  prevActivePanelKey: "",
+  smKey: "m-home",
+  prevsmKey: "",
   permission: [],
   fixedSider: localStorage.getItem("main-fixed-sider") !== "false",
   showTour: !localStorage.getItem("main-show-tour"),
@@ -58,8 +58,8 @@ export const storeHome: any = create<StoreHomeState>((set, get) => ({
     if (!option.id) {
       option.id = uniqueId();
     }
-    const prevActivePanelKey = get().activePanelKey;
-    const currentKey = get().activePanelKey;
+    const prevsmKey = get().smKey;
+    const currentKey = get().smKey;
     const tabPanes = get().tabPanes;
 
     if (
@@ -67,7 +67,7 @@ export const storeHome: any = create<StoreHomeState>((set, get) => ({
     ) {
       // tab页签列表中存在，直接激活  且刷新页面
       set({
-        activePanelKey: option.id,
+        smKey: option.id,
       });
       // (window as any)?.getPageTab(option.id)?.location?.reload();
     } else if (
@@ -75,9 +75,9 @@ export const storeHome: any = create<StoreHomeState>((set, get) => ({
     ) {
       // 相同menu更新url
       set({
-        activePanelKey: option.id,
-        prevActivePanelKey:
-          currentKey === option.id ? prevActivePanelKey || "" : currentKey,
+        smKey: option.id,
+        prevsmKey:
+          currentKey === option.id ? prevsmKey || "" : currentKey,
       });
 
       (get() as any)?.updateTab({
@@ -88,8 +88,8 @@ export const storeHome: any = create<StoreHomeState>((set, get) => ({
     } else {
       // tab页签列表中不存在
       set({
-        prevActivePanelKey: currentKey,
-        activePanelKey: option.id,
+        prevsmKey: currentKey,
+        smKey: option.id,
         tabPanes: [...tabPanes, { closable: true, ...option }],
       });
     }
@@ -98,10 +98,10 @@ export const storeHome: any = create<StoreHomeState>((set, get) => ({
   updateTab: async (params: any) => {
     const { title = "", url = "", id = "" }: any = params;
     params.id = id?.replace("page_", "");
-    const { tabPanes, activePanelKey } = get();
+    const { tabPanes, smKey } = get();
     const mTabPanes = _cloneDeep(tabPanes);
     const modifyTaget: any =
-      mTabPanes?.find((item: any) => item.id === (id || activePanelKey)) || {};
+      mTabPanes?.find((item: any) => item.id === (id || smKey)) || {};
 
     if (modifyTaget) {
       modifyTaget.title = title ? title : modifyTaget?.title;

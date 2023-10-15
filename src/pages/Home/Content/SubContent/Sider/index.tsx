@@ -5,10 +5,10 @@ import { shallow } from "zustand/shallow";
 import { storeHome } from "store/Home";
 
 const SubMenu = (): any => {
-  const { menus, firstMenukey, openTab } = storeHome(
+  const { menus, fmKey, openTab } = storeHome(
     (props: any) => ({
       menus: props.menus,
-      firstMenukey: props.firstMenukey,
+      fmKey: props.fmKey,
       openTab: props.openTab,
     }),
     shallow
@@ -16,9 +16,9 @@ const SubMenu = (): any => {
 
   // 处理树形数据
   const _treeData = useMemo(() => {
-    if (menus.length > 0 && firstMenukey) {
+    if (menus.length > 0 && fmKey) {
       return customFlattenDepth(
-        generateLevelData(firstMenukey, menus, 1).map((item) => {
+        generateLevelData(fmKey, menus, 1).map((item) => {
           const { isGrouping, children = [], ...others } = item;
           return isGrouping
             ? [
@@ -38,7 +38,7 @@ const SubMenu = (): any => {
       );
     }
     return [];
-  }, [menus, firstMenukey]); // eslint-disable-line
+  }, [menus, fmKey]); // eslint-disable-line
 
   // 点击树节点触发
   const handleSelect = (selectedKeys: any, { node }: any) => {

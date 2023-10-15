@@ -5,10 +5,10 @@ import { Menu, Layout } from "antd";
 import { AlibabaOutlined } from "@ant-design/icons";
 
 const FirstLevelMenu = (): any => {
-  const { menus, firstMenukey, changeState } = storeHome(
+  const { menus, fmKey, changeState } = storeHome(
     (props: any) => ({
       menus: props.menus,
-      firstMenukey: props.firstMenukey,
+      fmKey: props.fmKey,
       changeState: props.changeState,
     }),
     shallow
@@ -28,7 +28,7 @@ const FirstLevelMenu = (): any => {
   // 点击一级菜单
   const handleClick = ({ key }: { key: string }) => {
     changeState({
-      firstMenukey: key,
+      fmKey: key,
     });
   };
 
@@ -38,7 +38,7 @@ const FirstLevelMenu = (): any => {
         mode="inline"
         inlineIndent={10}
         theme="dark"
-        selectedKeys={[firstMenukey || []]}
+        selectedKeys={[fmKey || []]}
         items={_items}
         onClick={handleClick}
       />

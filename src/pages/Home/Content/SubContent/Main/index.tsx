@@ -10,8 +10,9 @@ import { storeHome } from "store/Home";
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 
 const Main: React.FC = () => {
-  const { tabPanes, smKey } = storeHome(
+  const { tabPanes, smKey, changeState } = storeHome(
     (props: any) => ({
+      changeState: props.changeState,
       tabPanes: props.tabPanes,
       smKey: props.smKey,
     }),
@@ -19,7 +20,19 @@ const Main: React.FC = () => {
   );
 
   const hanldeTabPanes = (targetKey: TargetKey, action: "add" | "remove") => {
+    if (action === "remove") {
+      changeState({
+        smKey: tabPanes?.[0].id,
+        tabPanes: tabPanes.filter((o: { id: string }) => o.id !== targetKey),
+      });
+    }
     if (targetKey && action) return;
+  };
+
+  const handleChange = (activeKey: string) => {
+    changeState({
+      smKey: activeKey,
+    });
   };
 
   // tab页签集合
@@ -63,6 +76,7 @@ const Main: React.FC = () => {
         size="small"
         type="editable-card"
         onEdit={hanldeTabPanes}
+        onChange={handleChange}
         style={{ height: "100%" }}
         items={_items}
       />

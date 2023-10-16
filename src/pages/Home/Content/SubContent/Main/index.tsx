@@ -10,11 +10,10 @@ import { storeHome } from "store/Home";
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 
 const Main: React.FC = () => {
-  const { tabPanes } = storeHome(
+  const { tabPanes, smKey } = storeHome(
     (props: any) => ({
       tabPanes: props.tabPanes,
-      fmKey: props.fmKey,
-      openTab: props.openTab,
+      smKey: props.smKey,
     }),
     shallow
   );
@@ -59,7 +58,9 @@ const Main: React.FC = () => {
       <Tabs
         hideAdd
         // onChange={onChange}
-        // activeKey={activeKey}
+        // renderTabBar={(props: any, DefaultTabBar: any) => DefaultTabBar}
+        activeKey={smKey}
+        size="small"
         type="editable-card"
         onEdit={hanldeTabPanes}
         style={{ height: "100%" }}

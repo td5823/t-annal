@@ -1,7 +1,9 @@
 import React from "react";
 
+import CanvasAnimation from "./CanvasAnimation";
+
 const Home = () => {
-  return <div>123</div>;
+  return <CanvasAnimation />;
 };
 
 export default Home;

@@ -18,7 +18,7 @@ const render = (Component: any) => {
             },
             Layout: {
               /* here is your component tokens */
-              headerPadding: "12px",
+              headerPadding: '0x 12px',
               headerBg: "#ffffff",
             },
           },

@@ -1,10 +1,12 @@
 import React from "react";
-import { Layout, Flex, Image } from "antd";
+import { Layout, Flex } from "antd";
 
 import Carousel from "./Carousel";
 import AuthorInfo from "./AuthorInfo";
 import Tags from "./Tags";
 import List from "./List";
+
+const questionIcon = require("./giphy.gif");
 
 const Home = () => {
   return (
@@ -15,12 +17,7 @@ const Home = () => {
       }}
     >
       <div className="flex flex-center flex-middle" style={{ height: 450 }}>
-        <Image
-          width={800}
-          height={400}
-          src="https://lmg.jj20.com/up/allimg/1113/050920095302/20050Z95302-18-1200.jpg"
-          style={{ borderRadius: 12 }}
-        />
+        <img src={questionIcon} style={{ width: 800, height: 400 }}></img>
       </div>
       <Layout
         style={{

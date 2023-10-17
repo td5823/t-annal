@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Layout } from "antd";
 
 class Star {
   orbitRadius: number;
@@ -64,7 +65,9 @@ class Star {
   }
 }
 
-const CanvasAnimation: React.FC = () => {
+const CanvasAnimation: React.FC<{
+  children?: React.ReactNode;
+}> = (props) => {
   useEffect(() => {
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -118,7 +121,12 @@ const CanvasAnimation: React.FC = () => {
     animation();
   }, []);
 
-  return <canvas id="canvas"></canvas>;
+  return (
+    <Layout className="full" style={{ backgroundColor: "unset" }}>
+      <canvas id="canvas" style={{ position: "absolute", zIndex: -1 }}></canvas>
+      {props.children}
+    </Layout>
+  );
 };
 
 export default CanvasAnimation;

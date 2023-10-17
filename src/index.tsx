@@ -13,8 +13,13 @@ const render = (Component: any) => {
         theme={{
           components: {
             Tabs: {
-              verticalItemMargin: '0px',
-              horizontalMargin: '0px'
+              verticalItemMargin: "0px",
+              horizontalMargin: "0px",
+            },
+            Layout: {
+              /* here is your component tokens */
+              headerPadding: "12px",
+              headerBg: "#ffffff",
             },
           },
         }}

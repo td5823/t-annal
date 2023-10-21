@@ -3,6 +3,7 @@ import { Layout } from "antd";
 import styled from "styled-components";
 
 import Menu from "./Menu";
+import Login from "./Login";
 
 const StyledHeader = styled(Layout.Header)`
   background: hsla(0, 0%, 100%, 0);
@@ -12,9 +13,11 @@ const StyledHeader = styled(Layout.Header)`
 `;
 
 const Home = () => {
+
   return (
-    <StyledHeader>
+    <StyledHeader className="flex flex-middle">
       <Menu />
+      <Login />
     </StyledHeader>
   );
 };

@@ -11,7 +11,8 @@
     "paths": {
       "@/*": ["src/*"],
       "store/*": ["src/store/*"], // 修正映射路径
-      "utils/*": ["src/library/utils/*"] // 修正映射路径
+      "utils/*": ["src/library/utils/*"], // 修正映射路径
+      "components/*": ["src/library/components/*"] // 修正映射路径
     }
   },
   "include": ["src/*"], // 需要包含在编译中的源代码目录，这里设置为 "src"，你可以根据实际情况进行修改

@@ -25,7 +25,8 @@ module.exports = {
       "warn",
       {
         vars: "all", // 对所有变量生效
-        args: "after-used", // 检测函数参数是否被使用
+        // args: "after-used", // 检测函数参数是否被使用
+        args: "none",
         ignoreRestSiblings: true, // 忽略剩余参数和解构赋值中的未使用变量
       },
     ],

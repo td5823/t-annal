@@ -6,7 +6,6 @@ import AuthorInfo from "./AuthorInfo";
 import Tags from "./Tags";
 import List from "./List";
 
-const questionIcon = require("./giphy.gif");
 
 const Home = () => {
   return (
@@ -17,7 +16,6 @@ const Home = () => {
       }}
     >
       <div className="flex flex-center flex-middle" style={{ height: 450 }}>
-        <img src={questionIcon} style={{ width: 800, height: 400 }}></img>
       </div>
       <Layout
         style={{

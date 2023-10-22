@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 // import postForm from "./postForm";
 import _postJson from "./postJson";
@@ -16,15 +17,60 @@ if (env === "development") {
   axios.defaults.withCredentials = true;
 }
 
+// axios.defaults.transformResponse = [
+//   function (result) {
+//     // 对接收的 data 进行任意转换处理
+//     if (result.code === "1") {
+//       return result;
+//     }
+//   },
+// ];
+
 // axios.interceptors.request.use((config) => {
 //   config.headers["Cookie"] = `token=${token}`;
 //   return config;
 // });
 
-export const postJson = _postJson
+// 封装处理响应拦截函数
+function handleResponse(response: any) {
+  return response;
+}
+
+// 封装处理错误拦截函数
+function handleErrorResponse(error: any) {
+  if (axios.isCancel(error)) {
+    return new Promise(() => {});
+  }
+  const errorMap: any = {
+    500: "服务器系统内部错误",
+    401: "未登录",
+    403: "无权限执行此操作",
+    404: "未找到此接口",
+    408: "请求超时",
+    default: "未知错误",
+  };
+  if (error?.response) {
+    const errorMessage = errorMap[error.response.status] || errorMap.default;
+    if (error.response.status === 401) {
+      // 请求
+    } else {
+      message.destroy();
+      message.error(errorMessage);
+    }
+  } else {
+    message.destroy();
+    message.error("服务器忙，请稍后重试");
+  }
+  return Promise.resolve(error?.response);
+}
+
+// axios拦截器
+axios.interceptors.response.use(handleResponse, handleErrorResponse);
+
+export const postJson = _postJson;
 
 const request = {
-  postJson:_postJson,
+  postJson: _postJson,
 };
 
 export default request;

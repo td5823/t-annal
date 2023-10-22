@@ -5,12 +5,8 @@ export const postForm = () => {
       firstName: "Fred",
       lastName: "Flintstone",
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .then(function (response) {})
+    .catch(function (error) {});
 };
 
 export const postJson = (props: any) => {

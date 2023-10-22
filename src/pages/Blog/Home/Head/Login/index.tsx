@@ -1,12 +1,18 @@
 import React from "react";
-import { Button, Modal } from "antd";
+import { Button, Modal, Form } from "antd";
 
 import BaseTrigger from "components/BaseTrigger";
+import { postJson } from "utils/request";
 
 import LoginForm from "./Form";
 
 const Login: React.FC = () => {
+  const [form] = Form.useForm();
+
   const handleOk = (onVisible: (visible: boolean) => void) => () => {
+    form.validateFields().then((res) => {
+      postJson("/users/login", res).then((res) => {});
+    });
     onVisible(false);
   };
 
@@ -28,12 +34,12 @@ const Login: React.FC = () => {
             onOk={handleOk(onVisible)}
             onCancel={() => onCancel(false)}
           >
-            <LoginForm />
+            <LoginForm form={form} />
           </Modal>
         );
       }}
     >
-      <Button type="primary">登陆111</Button>
+      <Button type="primary">登陆</Button>
     </BaseTrigger>
   );
 };

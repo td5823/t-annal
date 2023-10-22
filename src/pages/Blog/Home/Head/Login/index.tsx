@@ -33,7 +33,7 @@ const Login: React.FC = () => {
         );
       }}
     >
-      <Button type="primary">登陆</Button>
+      <Button type="primary">登陆111</Button>
     </BaseTrigger>
   );
 };

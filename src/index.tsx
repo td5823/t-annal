@@ -32,9 +32,9 @@ const render = (Component: any) => {
 
 render(Routes);
 
-if ((module as any).hot) {
-  (module as any).hot.accept("./routes", () => {
-    const NextRoutes = require("./routes").default;
-    render(NextRoutes);
-  });
-}
+// if ((module as any).hot) {
+//   (module as any).hot.accept("./routes", () => {
+//     const NextRoutes = require("./routes").default;
+//     render(NextRoutes);
+//   });
+// }

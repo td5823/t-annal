@@ -6,13 +6,27 @@ import { postJson } from "utils/request";
 
 import LoginForm from "./Form";
 
+import JSEncrypt from "jsencrypt";
+
 const Login: React.FC = () => {
   const [form] = Form.useForm();
 
-  const handleOk = (onVisible: (visible: boolean) => void) => () => {
-    form.validateFields().then((res) => {
-      postJson("/users/login", res).then((res) => {});
-    });
+  const handleOk = (onVisible: (visible: boolean) => void) => async () => {
+    const res = await postJson("/users/getPublicKey");
+    if (res.code === "1") {
+      form.validateFields().then((formRes) => {
+        // 加密敏感数据
+        const crypt = new JSEncrypt();
+        crypt.setPublicKey(res.data);
+        // 加密数据
+        const encryptedData = crypt.encrypt(formRes.password);
+        postJson("/users/register", {
+          ...formRes,
+          password: encryptedData,
+        }).then((res) => {
+        });
+      });
+    }
     onVisible(false);
   };
 
